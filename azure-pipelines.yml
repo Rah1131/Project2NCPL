@@ -5,15 +5,14 @@
 
 trigger:
 - main
-
 pool:
   vmImage: ubuntu-latest
-
 steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+    echo "Creating log file on the VM"
+    ssh -o StrictHostKeyChecking=no -i /path/to/private_key user@vm_ip_address "echo 'Pipeline executed successfully' > ~/pipeline_log.txt"
+  displayName: 'Log Pipeline Success on VM'
+
